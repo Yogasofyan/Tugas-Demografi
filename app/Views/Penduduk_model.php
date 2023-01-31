@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Penduduk_model extends Model
+{
+    protected $table        ='tab_penduduk';
+
+    public function data_penduduk_json(){
+        $query  =   $this->db->query("select a.nik, a.no_kk, a.nama_lengkap, a.tempat_lahir, a.tgl_lahit, a.jenis_kelamin,
+        b.pendidikan, c.pendapatan, d.agama, a.alamat_lengkap, e.kelurahan, a.penduduk_aslifrom tab_penduduk as a
+        left join tab_pendidikan as b on a.pendidikan = b.id
+        left join tab_pendapatan as b on a.pendapatan = b.id
+        left join tab_agama as b on a.agama = b.id
+        left join tab_kelurahan as b on a.kelurahandikan = b.id");
+        return $query->getResult();}
+        
+}
+
+?>
